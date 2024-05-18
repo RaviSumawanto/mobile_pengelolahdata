@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Image Upload to Firestore</title>
+</head>
+<link rel="stylesheet" href="sty2.css">
+
+<body>
+  <h1>Image Upload to Firestore</h1>
+  <form id="imageForm">
+    <input type="file" id="imageInput" accept="image/*">
+    <button type="submit">Upload</button>
+  </form>
+  <div id="progress"></div>
+  <!-- Place this script tag at the end of the body section -->
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+  <script>
+    // Replace with your Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBLAi-LCiM45fXSN6e2SSuxwKWVOcBcttw",
+      authDomain: "testingdatabase-4b27a.firebaseapp.com",
+      projectId: "testingdatabase-4b27a",
+      storageBucket: "testingdatabase-4b27a.appspot.com",
+      messagingSenderId: "992603203545",
+      appId: "1:992603203545:web:f7782446d439468dec5bc8",
+      measurementId: "G-WLVJT4WJ7R"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Get a reference to Firestore
+    const db = firebase.firestore();
+
+    // Get references to DOM elements
+    const imageForm = document.getElementById("imageForm");
+    const imageInput = document.getElementById("imageInput");
+    const progress = document.getElementById("progress");
+
+    // Event listener for form submission
+    imageForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const file = imageInput.files[0];
+      if (file) {
+        const storageRef = firebase.storage().ref();
+        const imageRef = storageRef.child(file.name);
+
+        // Upload the file to Firebase Storage
+        const uploadTask = imageRef.put(file);
+
+        // Show the upload progress
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            progress.innerHTML = `Uploading... ${percent.toFixed(2)}%`;
+          },
+          (error) => {
+            console.error("Error uploading image:", error);
+          },
+          () => {
+            // Upload completed successfully
+            progress.innerHTML = "Upload complete!";
+            // Get the download URL for the image and save it to Firestore
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+              // Save the image URL to Firestore
+              db.collection("event").add({
+                url: downloadURL,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              });
+            });
+          }
+        );
+      } else {
+        alert("Please select an image to upload.");
+      }
+    });
+  </script>
+
+</body>
+
+</html>

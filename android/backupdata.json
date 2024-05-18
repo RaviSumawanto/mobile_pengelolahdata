@@ -1,0 +1,117 @@
+{
+  "__collections__": {
+    "data": {
+      "kentang": {
+        "bahan": "kentang",
+        "jumlah": "2000",
+        "__collections__": {}
+      },
+      "tomat": {
+        "bahan": "tomat",
+        "jumlah": "8000",
+        "__collections__": {}
+      }
+    },
+    "harga": {
+      "kubis": {
+        "ymd": "17-07-2023",
+        "bahan": "kubis",
+        "harga": "4000",
+        "__collections__": {}
+      }
+    },
+    "kakenturan": {
+      "sawi": {
+        "bahan": "sawi",
+        "produksi": "8000",
+        "luas": "700m^2",
+        "__collections__": {}
+      },
+      "tomat": {
+        "bahan": "tomat",
+        "produksi": "10000",
+        "luas": "500m^2",
+        "__collections__": {}
+      }
+    },
+    "linelean": {
+      "kubis": {
+        "bahan": "kubis",
+        "produksi": "7000",
+        "luas": "700m^2",
+        "__collections__": {}
+      }
+    },
+    "maakaroyen": {
+      "bawang putih": {
+        "bahan": "bawang putih",
+        "produksi": "3000",
+        "luas": "5000m^2",
+        "__collections__": {}
+      },
+      "wortel": {
+        "bahan": "wortel",
+        "luas": "6000m^2",
+        "produksi": "3000",
+        "__collections__": {}
+      }
+    },
+    "mokobang": {
+      "tomat": {
+        "bahan": "tomat",
+        "produksi": "500",
+        "luas": "600m^2",
+        "__collections__": {}
+      }
+    },
+    "palelon": {
+      "kubis": {
+        "bahan": "kubis",
+        "produksi": "9000",
+        "luas": "800m^2",
+        "__collections__": {}
+      }
+    },
+    "pinasungkulan": {
+      "bawang batang": {
+        "bahan": "bawang batang",
+        "produksi": "10000",
+        "luas": "2000m^2",
+        "__collections__": {}
+      }
+    },
+    "sinisir": {
+      "kentang": {
+        "bahan": "kentang",
+        "produksi": "15000",
+        "luas": "2000m^2",
+        "__collections__": {}
+      }
+    },
+    "testing_data": {
+      "2023": {
+        "bahan": "tomat",
+        "jumlah": 12000,
+        "__collections__": {}
+      },
+      "2024": {
+        "jumlah": 5000,
+        "bahan": "MyBesti",
+        "__collections__": {}
+      },
+      "2025": {
+        "bahan": "kol",
+        "jumlah": 2000,
+        "__collections__": {}
+      }
+    },
+    "wulurmaatus": {
+      "kentang": {
+        "bahan": "kentang",
+        "produksi": "5000",
+        "luas": "5000m^2",
+        "__collections__": {}
+      }
+    }
+  }
+}

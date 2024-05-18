@@ -1,0 +1,122 @@
+body {
+  background-color: rgb(150, 150, 150);
+}
+
+.container {
+  width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  /* border: 2px solid red; */
+  font-family: arial;
+  font-size: 16px;
+  background-color: white;
+  border-radius: 20px;
+}
+h2 {
+  text-align: center;
+}
+.container div {
+  text-align: center;
+}
+input {
+  width: 250px;
+  padding: 5px;
+}
+button {
+  width: 70px;
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+  background-color: cornflowerblue;
+  border: none;
+  color: white;
+  border-radius: 10px;
+}
+
+nav ul {
+  background: #00e51b;
+  padding: 0 0px;
+  list-style: none;
+  position: relative;
+  width: 100%;
+  font-family: ‘helvetica’, arial;
+}
+
+nav ul:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+nav ul li {
+  float: left;
+}
+
+nav ul li:hover {
+  background-color: #00e50f;
+
+}
+
+nav ul li a {
+
+  display: block;
+  padding: 20px 30px;
+  text-decoration: none;
+  color: #fff;
+
+}
+
+nav ul li a:hover{
+
+  color: #fff;
+
+}
+
+nav ul ul {
+
+  display: none;
+  background: #04fc04;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  max-width: 300px;
+  width: auto;
+
+}
+
+nav ul ul li {
+
+  float: none;
+  border-bottom: 1px solid rgba(3, 75, 255, 0.2);
+  position: relative;
+
+}
+
+nav ul li:hover > ul {
+
+  display: block;
+
+}
+
+nav ul ul li a {
+
+  padding: 10px 40px;
+  color: #fff;
+
+}
+
+nav ul ul li a:hover {
+
+  background: #222;
+
+}
+
+nav ul ul ul {
+
+  position: absolute;
+  left: 100%;
+  top:0;
+  width: 200px;
+
+}
+

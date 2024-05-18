@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengelolah Data</title>
+  <link rel="stylesheet" href="sty.css" />
+</head>
+
+<body>
+  <div class="menu-bar">
+    <h1 class="logo">Pengelolah<span>Data</span></h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#">Hasil Penelitian<i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <ul>
+            <li><a href="#">Desa<i class="fas fa-caret-right"></i></a>
+              <div class="dropdown-menu-1">
+                <ul>
+                  <li><a href="sinisir.html">Sinisir</a></li>
+                  <li><a href="pinasungkulan.html">Pinasungkulan</a></li>
+                  <li><a href="pinasungkulanutara.html">Pinasungkulan Utara</a></li>
+                  <li><a href="maakaroyen.html">Maakaroyen</a></li>
+                  <li><a href="kakenturan.html">Kakenturan</a></li>
+                  <li><a href="kakenturanbarat.html">Kakenturan Barat</a></li>
+                  <li><a href="linelean.html">Linelean</a></li>
+                  <li><a href="palelon.html">Paleon</a></li>
+                  <li><a href="wulurmaatus.html">Wulurmaatus</a></li>
+                  <li><a href="mokobang.html">Mokobang</a></li>
+                </ul>
+              </div>
+            </li>
+            <li><a href="harga.html">Harga</a></li>
+            <li><a href="produk.html">Produk</a></li>
+            <li><a href="#">Laporan</a></li>
+          </ul>
+        </div>
+      </li>
+      <li><a href="#">Diagram</a></li>
+      <li><a href="event.html">Event</a></li>
+      <li><a href="tahun.html">Tahun</a></li>
+      <li><a href="#">Profil</a></li>
+    </ul>
+  </div>
+  <div class="container">
+    <h2>Diagram Perkembangan</h2>
+    <hr />
+    <br />
+    <div class="form">
+
+      bahan:&nbsp; <input type="text" name="bahan" id="bahan" /> <br /><br />
+      jumlah: <input type="number" name="jumlah" id="jumlah" /> <br /><br />
+
+    </div>
+
+    <div class="buttons">
+      <button id="insert">Insert</button>
+      <button id="read">Read</button>
+      <button id="update">Update</button>
+      <button id="delete">Delete</button>
+    </div>
+  </div>
+
+  <!------------IMPORT & KONFIGURASI------------------->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyBLAi-LCiM45fXSN6e2SSuxwKWVOcBcttw",
+      authDomain: "testingdatabase-4b27a.firebaseapp.com",
+      projectId: "testingdatabase-4b27a",
+      storageBucket: "testingdatabase-4b27a.appspot.com",
+      messagingSenderId: "992603203545",
+      appId: "1:992603203545:web:f7782446d439468dec5bc8",
+      measurementId: "G-WLVJT4WJ7R"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    import {
+      getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+    }
+      from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+
+    const db = getFirestore();
+
+    //---------------------References----------------------------//
+    let Nbahan = document.getElementById("bahan");
+    let jumlahB = document.getElementById("jumlah");
+
+    let insbtn = document.getElementById("insert");
+    let readbtn = document.getElementById("read");
+    let updbtn = document.getElementById("update");
+    let delbtn = document.getElementById("delete");
+
+    //----------ADD Document-----------//
+    async function AddDocument_AutoID() {
+      var ref = collection(db, "data");
+
+      const docRef = await addDoc(
+        ref, {
+        bahan: Nbahan,
+        jumlah: parseInt(jumlahB)
+      }
+      )
+        .then(() => {
+          alert("data added successfully");
+        })
+        .catch((error) => {
+          alert("unsuccessfull operation, error:" + error);
+        });
+      console.log("document id is " + docRef.id);
+    }
+
+    async function AddDocument_CostumeID() {
+      var ref = doc(db, "data", Nbahan.value);
+
+      const docRef = await setDoc(
+        ref, {
+        bahan: Nbahan.value,
+        jumlah: parseInt(jumlahB.jumlah.value),
+      }
+      )
+        .then(() => {
+          alert("data added successfully");
+        })
+        .catch((error) => {
+          alert("unsuccessfull operation, error:" + error);
+        });
+      console.log("document id is " + docRef.id);
+    }
+
+
+    //--------------SELECT DATA------------//
+
+    async function GetADocument() {
+      var ref = doc(db, "data", Nbahan.value);
+      const docSnap = await getDoc(ref);
+
+      if (docSnap.exists()) {
+        Nbahan.value = docSnap.data().bahan,
+          jumlahB.value = docSnap.data().jumlah
+      }
+
+      else {
+        alert("Tidak ada document");
+      }
+    }
+
+    //--------------UPDATE DATA----------//
+
+    async function UpdateFieldInADocument() {
+      var ref = doc(db, "data", Nbahan.value);
+
+      await updateDoc(
+        ref, {
+        jumlah: jumlahB.value
+      }
+      )
+        .then(() => {
+          alert("data Update successfully");
+        })
+        .catch((error) => {
+          alert("unsuccessfull operation, error:" + error);
+        });
+    }
+
+    //--------------Hapus Data----------//
+
+    async function DeleteDocument() {
+      var ref = doc(db, "data", Nbahan.value);
+      const docSnap = await getDoc(ref);
+
+      if (!docSnap.exists()) {
+        alert("Document does not exist");
+        return;
+      }
+
+      await deleteDoc(ref)
+        .then(() => {
+          alert("data delete Succsess")
+        })
+        .catch((error) => {
+          alert("Unsuccess Operation, error:" + error);
+        });
+    }
+
+    //--------------Assign Btn----------//
+
+    insbtn.addEventListener("click", AddDocument_CostumeID);
+    readbtn.addEventListener("click", GetADocument);
+    updbtn.addEventListener("click", UpdateFieldInADocument);
+    delbtn.addEventListener("click", DeleteDocument);
+
+  </script>
+
+</body>
+
+</html>
