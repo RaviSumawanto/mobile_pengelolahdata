@@ -1,16 +1,5 @@
-# testingdatabase
+Agriculture data Processing Android Application
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This application is my final project in college. This data processing application is to manage agricultural data for users to be able to manage agriculture properly.
+It can also provide user needs to be concerned about the market price of agriculture to be managed properly. This application can be accessed on a mobile phone to make it easier for the public to access.
+For users or admins can access via the website and can connect through the Database (Firebase) to input data.
